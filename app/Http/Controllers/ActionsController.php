@@ -41,6 +41,7 @@ class ActionsController extends Controller {
             'callerid.required' => 'Este campo é obrigatório!',
 
             'setor.required' => 'Este campo é obrigatório!',
+            'setor.string' => 'Este campo é obrigatório!',
 
 
             
