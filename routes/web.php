@@ -26,6 +26,6 @@ Route::get('/', [ActionsController::class, 'index'])->middleware(['auth'])->name
 Route::get('/addRamal', [ActionsController::class, 'addRamal'])->name('addRamal');
 Route::post('/novoRamal', [ActionsController::class, 'addRamalNew']);
 
-Route::get('/fila/login', [ActionsController::class, 'logIn']);
+Route::get('/fila/login', [ActionsController::class, 'logIn'])->name('/fila/login');
 
 require __DIR__.'/auth.php';

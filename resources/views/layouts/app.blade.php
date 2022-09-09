@@ -15,8 +15,12 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
         <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        @livewireStyles
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -30,5 +34,7 @@
                 {{ $slot }}
             </main>
         </div>
+        
+        @livewireScripts
     </body>
 </html>

@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('addRamal')" :active="request()->routeIs('addRamal')">
                         {{ __('Adicionar Ramais') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('/fila/login')" :active="request()->routeIs('/login/fila')">
+                        {{ __('Fila') }}
+                    </x-nav-link>
                 </div>
             </div>
             

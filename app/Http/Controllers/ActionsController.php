@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sippeer;
+use App\Models\Queue_member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +33,7 @@ class ActionsController extends Controller {
             'callerid' => 'required|string',
             'setor' => 'required'
 
-        ], [
+            ], [
             'ramalnum.required' => 'Este campo é obrigatório',
             'ramalnum.integer' => 'O campo Ramal deve conter apenas números!',
             'ramalnum.max' => 'O campo deve conter 4 dígitos!',
@@ -42,11 +43,11 @@ class ActionsController extends Controller {
 
             'setor.required' => 'Este campo é obrigatório!',
             'setor.string' => 'Este campo é obrigatório!',
-
+            
 
             
-        ]
-    );
+            ]
+        );
         
         $new_ramal = new Sippeer();
 
@@ -72,13 +73,11 @@ class ActionsController extends Controller {
         //vincular o usuário a um setor
         // adicionar um ramal à fila
         
-        $membername = Auth::user()->name;
-        $login = new Queue();
-
-        $login->queue_name = 'Assist';
-        $login->interface = 'SIP/'.$membername;
-        $login->membername = $membername;
         
-    } 
+        
+
+        return view('fila');
+    }
+    
 }
 
