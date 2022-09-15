@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+use App\Models\Department;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->foreignIdFor(Department::class)->references('id')->on('department')->onDelete('CASCADE');
             $table->rememberToken();
             $table->timestamps();
         });

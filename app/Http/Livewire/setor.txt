@@ -1,0 +1,3 @@
+setor:
+cada usuario vai ter 1 setor
+cada setor pode ter varios usuarios

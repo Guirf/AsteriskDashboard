@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 
 class ActionsController extends Controller {
-    
+    public $message;
     public function index() {
 
         $dados = DB::select('select * from sippeers');
@@ -44,8 +44,6 @@ class ActionsController extends Controller {
             'setor.required' => 'Este campo é obrigatório!',
             'setor.string' => 'Este campo é obrigatório!',
             
-
-            
             ]
         );
         
@@ -65,19 +63,18 @@ class ActionsController extends Controller {
         $new_ramal->save();
 
         echo "ramal adicionado";
-
-
     }
 
     public function logIn(Request $request) {
-        //vincular o usuário a um setor
-        // adicionar um ramal à fila
-        
-        
-        
 
         return view('fila');
     }
+    
+    public function addUser() {
+        return view('addUser');
+    }
+
+    
     
 }
 

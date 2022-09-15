@@ -18,6 +18,8 @@
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+
         
         <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
         @livewireStyles

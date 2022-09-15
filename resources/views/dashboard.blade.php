@@ -25,7 +25,7 @@
                         @foreach($dados as $dado)
                           <tr>
                             <th>{{ $dado->name }}</th>
-                            <th>{{ $dado->callerid }}</th>
+                            <th>{{ $dado->fullname }}</th>
                             <th>{{ $dado->context }}</th>
                             <th>
                                 @if(!empty($dado->ipaddr))
