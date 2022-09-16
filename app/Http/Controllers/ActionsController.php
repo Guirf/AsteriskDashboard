@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 
 class ActionsController extends Controller {
-    public $message;
+    public $teste;
+
     public function index() {
 
         $dados = DB::select('select * from sippeers');
@@ -65,9 +66,10 @@ class ActionsController extends Controller {
         echo "ramal adicionado";
     }
 
-    public function logIn(Request $request) {
+    public function logIn() {
 
         return view('fila');
+        
     }
     
     public function addUser() {

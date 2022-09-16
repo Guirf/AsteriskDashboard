@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class FilaForm extends Component {
+
+    public function render() {
+        return view('livewire.fila-form');
+    }
     
     public $teste;
 
@@ -35,6 +39,15 @@ class FilaForm extends Component {
             session()->flash('login');
         }
 
+        $setores = DB::table('users')
+        ->select('department.name as setor', 'users.name')
+        ->join('user_department', 'user_department.user_id', '=', 'users.id')
+        ->join('department', 'department.id', '=', 'user_department.department_id')
+        ->where('users.name', '=', 'Guilherme')
+        ->get()->toArray();
+
+        dd($setores);
+        
     }
 
     public function logOut(Request $request) {

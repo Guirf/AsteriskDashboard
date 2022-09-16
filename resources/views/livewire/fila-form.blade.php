@@ -1,9 +1,14 @@
-<div class="container">
+<x-app-layout>
+<livewire:fila-form>
+
     <select wire:model="teste">
         <option value="0" selected>Selecione um setor</option>
-        <option value="1" selected>{{ Auth::user()->department; }}</option>
+        @foreach($setores ?? '' as $setor)
+        <option value="{{ $setor->setor }}">{{ $setor->setor }}</option>
+        @endforeach
     </select>
- 
-    <h1>@json($teste)</h1>
-</div>
+
+</x-app-layout>
+@json($teste);
+
 

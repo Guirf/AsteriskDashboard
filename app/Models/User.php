@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Department;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -23,6 +24,10 @@ class User extends Authenticatable
         'password',
         'id_department'
     ];
+
+    public function department() {
+        return $this->hasMany(Department::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

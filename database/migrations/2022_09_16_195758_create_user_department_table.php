@@ -6,24 +6,17 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
-{
+class CreateUserDepartmentTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('users', function (Blueprint $table) {
+    public function up() {
+        Schema::create('user_department', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
             $table->foreignIdFor(Department::class)->references('id')->on('department')->onDelete('CASCADE')->nullable();
-            $table->foreignIdFor(User_department::class)->references('id')->on('user_department')->onDelete('CASCADE');
-            $table->rememberToken();
+            $table->foreignIdFor(User::class)->references('id')->on('users')->onDelete('CASCADE')->nullable();
             $table->timestamps();
         });
     }
@@ -35,6 +28,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('user_department');
     }
 }
