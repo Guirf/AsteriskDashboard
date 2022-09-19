@@ -66,11 +66,7 @@ class ActionsController extends Controller {
         echo "ramal adicionado";
     }
 
-    public function logIn() {
-
-        return view('fila');
-        
-    }
+   
     
     public function addUser() {
         return view('addUser');

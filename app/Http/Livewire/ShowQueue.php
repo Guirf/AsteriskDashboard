@@ -14,35 +14,50 @@ use Illuminate\Validation\Rules\Password;
 class ShowQueue extends Component {
     
     public $queue_name;
-
     
-
     public function render() {
+        $nome_usuario = Auth::user()->name;
         // Lista os setores disponíveis para o usuário
         $setores = DB::table('users')
-        ->select('department.name as setor', 'users.name')
-        ->join('user_department', 'user_department.user_id', '=', 'users.id')
-        ->join('department', 'department.id', '=', 'user_department.department_id')
-        ->where('users.name', '=', 'Guilherme')
-        ->get()->toArray();
+                ->select('department.name as setor', 'users.name')
+                ->join('user_department', 'user_department.user_id', '=', 'users.id')
+                ->join('department', 'department.id', '=', 'user_department.department_id')
+                ->where('users.name', '=', $nome_usuario)
+                ->get()->toArray();
+
+        
+        $pega_ramal = DB::table('sippeers')
+                ->select('sippeers.name')
+                ->join('users', 'users.id', '=', 'sippeers.user_id')
+                ->where('users.name', '=', $nome_usuario)
+                ->get()->toArray();
+
+        foreach($pega_ramal as $ramal) {
+            $interface = $ramal->name;
+                            
+        }
 
 
         return view('livewire.show-queue', [
-            'setores' => $setores
+            'setores' => $setores,
+            'interface' => $interface
         ]);
     }
 
     public function login() {  
 
+        $nome_usuario = Auth::user()->name;
+
         // pega o numero do ramal do usuário
         $pega_ramal = DB::table('sippeers')
                     ->select('sippeers.name')
                     ->join('users', 'users.id', '=', 'sippeers.user_id')
-                    ->where('users.name', '=', 'Guilherme')
+                    ->where('users.name', '=', $nome_usuario)
                     ->get()->toArray();
 
         foreach($pega_ramal as $ramal) {
             $interface = $ramal->name;
+            
         }
 
         $queue_name = $this->queue_name;
@@ -64,7 +79,7 @@ class ShowQueue extends Component {
             //variável que chama o model->campo da tabela = $variável vinda da view
             
 
-            $login->membername = Auth::user()->name;
+            $login->membername = $nome_usuario;
             $login->queue_name = $queue_name;
             $login->interface = $interface;
             $login->save();
@@ -73,7 +88,22 @@ class ShowQueue extends Component {
             
         }
 
+    }
+
+    public function verificalogin() {
+
+        $queue_name = $this->queue_name;
+
+        $isLoged = DB::table('queue_members')
+        ->select('queue_name')
+        ->where('queue_name', '=', $queue_name)
+        ->where('interface', '=', '1000')
+        ->get()->count();
         
+        if($isLoged > 0) {
+            
+            session()->flash('logged');
+        }
 
     }
 }
