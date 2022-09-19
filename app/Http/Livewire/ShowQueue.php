@@ -14,6 +14,7 @@ use Illuminate\Validation\Rules\Password;
 class ShowQueue extends Component {
     
     public $queue_name;
+    public $action;
     
     public function render() {
         $nome_usuario = Auth::user()->name;
@@ -61,6 +62,7 @@ class ShowQueue extends Component {
         }
 
         $queue_name = $this->queue_name;
+        $action = $this->action;
 
         //verifica se o usuário já está logado
         $isLoged = DB::table('queue_members')
