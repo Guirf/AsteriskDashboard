@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Queue_member extends Model {
 
     protected $fillable = [
+        'membername',
         'queue_name',
         'interface',
-        'membername'
+        'penalty',
+        'paused'
     ];
 
 

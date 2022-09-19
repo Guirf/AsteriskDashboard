@@ -1,7 +1,8 @@
 <?php
 
-use App\Livewire\FilaForm;
-use App\Livewire\ShpwPosts;
+use App\Http\Livewire\FilaForm;
+
+use App\Http\Livewire\ShowQueue;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ActionsController;
 /*
@@ -28,21 +29,8 @@ Route::get('/dashboard', [ActionsController::class, 'index'])->middleware(['auth
 Route::get('/addRamal', [ActionsController::class, 'addRamal'])->name('addRamal');
 Route::post('/novoRamal', [ActionsController::class, 'addRamalNew']);
 
-Route::get('/fila/login', [App\Models\Livewire\FilaForm::class]);
+Route::get('/fila/login', ShowQueue::class)->name('/fila/login');
 
 Route::get('/add/user', [ActionsController::class, 'addUser']);
-
-
-Route::get('/clear', function() {
-    Artisan::call('cache:clear');
-    Artisan::call('route:cache');
-    Artisan::call('view:clear');
-    Artisan::call('config:cache');
-    return  "all cleared ...";
-
-});
-
-//Route::get('/fila/login', FilaForm::class);
-Route::get('/rteste', ShowPost::class);
 
 require __DIR__.'/auth.php';
