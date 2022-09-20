@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-xl-4">
                     <div class="card shadow">
-                        <div class="container-fluid">
+                        <div class="">
                             <div class="card-body" style="height: 520px;">
                                 <div class="d-flex align-items-center justify-content-center icon-card">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="110" height="130" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -19,7 +19,7 @@
                                 </div>
                                 <br><br>
                                 <div class="container">
-                                    <form wire:submit.prevent='login' >
+                                    <form wire:submit.prevent='queue_action' >
                                         @csrf
 
                                         <select class="rounded-3" wire:click='verificalogin' style="width: 100%" wire:model='queue_name'>
@@ -27,22 +27,25 @@
                                             @foreach($setores as $setor)
                                             <option value="{{ $setor->setor }}">{{ $setor->setor }}</option>
                                             @endforeach
+                                            
                                         </select>
 
                                         <br><br>
 
-                                        <select wire:click='verificalogin' class="rounded-3" style="width:100%;" wire:model='action'>
-                                            <option value="" selected>Selecionar pausa</option>
-                                            @if(session()->has('login')||session()->has('logged'))
+                                        <select class="rounded-3" style="width: 100%" wire:model='action' wire:click='verificalogin' >
+                                            <option value="" selected>Selecionar ação</option>
                                             
-                                            <option value="">Pausa descanso</option>
-                                            <option value="">Pausa refeição</option>
-                                            
+                                            @if(session()->has('login') || session()->has('logged'))
+                                            <option value="pausa_descanso">Pausa descando</option>
+                                            <option value="pausa_refeicao">Pausa refeição</option>
+                                            <option value="deslogar">Deslogar</option>
                                             @else
-                                            
-                                            <option value="">Login</option>
+                                            <option value="login">Logar</option>
                                             @endif
+                                           
+                                            
                                         </select>
+                                        @json($action)
 
                                         <div>
                                             @include('layouts.alerts')
